@@ -1,0 +1,5 @@
+body {
+    background-color: lightblue; /* fallback */
+    background: radial-gradient(circle at 100% 50%, rgb(30, 112, 199), rgb(134, 118, 162));
+    font-family: 'Courier New', Courier, monospace;
+}

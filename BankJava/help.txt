@@ -1,0 +1,14 @@
+**What I did not know**
+
+How to make your button respond in Java:
+1. Add actionListener, which will contain the code to make it work
+2. Add the button to the panel.
+3.
+1. How to pop a user input text book.
+eg. I want to deposit 50$, and I want a input text box.
+
+Solution: Add actionListener, then add JOptionPane for input dialog.
+
+2. How to transfer actionListener to another class.
+
+Solution: 
