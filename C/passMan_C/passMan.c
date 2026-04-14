@@ -3,12 +3,41 @@
 #include <stdlib.h>
 #include "PASS.h"
 
-int main(int narg, char* argv[]) {
+int main() {
 
-    FILE *file = fopen(argv[1], "r");
+    struct data d1;
+    int massPass = 12345;
 
-    if (argv < 2) {
-        printf("Error opening file");
+    printf("Welcome to password manager!\nPlease login:");
+    scanf("%d", &d1.password);
+
+    if (d1.password != massPass) {
+        printf("Invalid login");
     }
 
+    printf("===============================\nWelcome Back Rythem !\n");
+    printf("1.View saved pass\n2.New entry\n3.Exit\n");
+
+    int option;
+    switch (option) {
+    case 1:
+    break;
+
+    case 2:
+    break;
+
+    case 3:
+    break;
+
+    default:
+    printf("invalid opt");
+        break;
+    }
+
+
+
 }
+
+
+
+
