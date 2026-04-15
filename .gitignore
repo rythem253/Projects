@@ -1,2 +1,7 @@
 passwords.txt
-
+*.o
+*.out
+*.exe
+a.out
+.vscode/
+passwords.txt
