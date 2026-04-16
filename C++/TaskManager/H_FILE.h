@@ -3,11 +3,25 @@
 
 #include <string>
 
-struct hashStruct
+typedef struct ht_items
+{
+    char* data;
+    char* value; 
+} ht_items;
+
+//Hash table 
+typedef struct hashTable
 {
     /* data */
-    int data;
-    int value;  
+    ht_items** items;
+    int size;
+    int count;
+} hashtable;
+
+//Linked list
+struct Node {
+    int val;
+    Node* next;
 };
 
 
