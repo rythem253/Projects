@@ -1,6 +1,5 @@
 #ifndef DOC_H
 #define DOC_H
-
 #include <string>
 
 /**
@@ -8,8 +7,14 @@
  * in C++ it automatically takes care of you. 
  */
 struct Node {
-    std::string task; 
-    Node* next;
+    std::string task;
+    Node* next; //in C, although you need a pointer to the struct Node, eg: struct Node* next.
 };
+
+/**
+ * Function prototypes
+ */
+void createNode(std::string usrInput, Node*& head);
+void displayLL(Node* head);
 
 #endif
