@@ -1,6 +1,6 @@
 #include <iostream>
+#include "DOC.H"
 using namespace std;
-
 
 int main() {
 
@@ -11,13 +11,15 @@ int main() {
     cout << "3. Display tasks\n";
     cout << "4. Exit\n";
 
+    std::string input; 
     int choice;
     cin >> choice;
 
     switch (choice) {
         case 1:
             cout << "Creating a task...\n";
-            // Placeholder for task creation logic
+            cout << "Please type the task: ";
+            getline(cin, input); //Reads the whole line including spaces
             break;
         case 2:
             cout << "Deleting a task...\n";
@@ -37,3 +39,7 @@ int main() {
 	return 0;
 }
 
+    //This function adds a node into the linked-list
+    void createNode(std::string usrInput, Node*& head) {
+      
+    }
