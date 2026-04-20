@@ -16,5 +16,6 @@ struct Node {
  */
 void createNode(std::string usrInput, Node*& head);
 void displayLL(Node* head);
+void deleteNode(Node* head, int t_Num);
 
 #endif

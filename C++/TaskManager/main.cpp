@@ -12,17 +12,19 @@ int main() {
     int t_del;
 
     while (loop) {
-        cout << "Welcome to the Task Manager!\n";
-        cout << "Please select an option:\n";
+        cout << "==========Welcome to the Task Manager!==========\n";
+        cout << "          Please select an option:\n";
+        cout << "------------------------------------------------\n";
         cout << "1. Create a task\n";
         cout << "2. Delete a task\n";
         cout << "3. Display tasks\n";
         cout << "4. Exit\n";
+        cout << "\n";
+        cout << "\n";
         cin >> choice;
     switch (choice) {
         case 1:
-            cout << "Creating a task...\n";
-            cout << "Please type the task: ";
+            cout << "Please type the task:";
             cin.ignore(); //To clear the input stream.
             getline(cin, input); //Reads the whole line including spaces
             createNode(input, listHead);
@@ -30,14 +32,15 @@ int main() {
         case 2:
             cout << "Select task number to delete: ";
             cin >> t_del;
-            cout << "Deleting a task...\n";
+            deleteNode(listHead, t_del);
             break;
         case 3:
-            cout << "Displaying tasks...\n";
+            cout << "Displaying tasks:\n";
             displayLL(listHead);
             break;
        case 4:
             cout << "Exiting the Task Manager. Goodbye!\n";
+            exit(1);
             break;
         default:
             cout << "Invalid choice. Please try again.\n";
@@ -51,31 +54,43 @@ int main() {
     Node* new_Node = new Node;
     new_Node->task = usrInput;
     new_Node->next = head;
-    head=new_Node;
+    head = new_Node;
+    //Need to make new node append at the end, not at front.
 }
 
     //Traverse the linked list to display all the tasks
     void displayLL(Node* head) {
+
+    int count = 1;
+    
     Node* temp = head;
-    while (temp->next != NULL) {    
+    while (temp != NULL) {    
+        cout << count << "." <<temp->task << endl;
         temp = temp->next;
-        cout << temp->task << endl;
+        count++;
     }
 }
 
-/**
     void deleteNode(Node* head, int t_Num) {
+
+        int count = 1;
+
         Node* temp = head;
         Node* prev = nullptr;
 
-        while (temp->task != t_Num) {
+        //Need code to delete head of the linked-list
+
+        while (temp != NULL) {
             prev=temp;
             temp = temp->next;
 
             if (temp == NULL) {
                 return;
             }
-            prev->next = temp->next;
+
+            if (count == t_Num) {
+                prev->next = temp->next;
+            }
+            count++;
         }
     }
-*/
