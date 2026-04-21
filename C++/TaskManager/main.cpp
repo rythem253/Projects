@@ -53,9 +53,21 @@ int main() {
     void createNode(std::string usrInput, Node*& head) {
     Node* new_Node = new Node;
     new_Node->task = usrInput;
-    new_Node->next = head;
-    head = new_Node;
+    new_Node->next = nullptr;
     //Need to make new node append at the end, not at front.
+    //Need to make a whole loop for that, to append at the end of the linked list.
+
+    if (head == nullptr) {
+        head = new_Node;
+        return;
+    }
+
+    Node* temp = head;
+
+    while (temp->next != nullptr) {
+        temp = temp->next;
+    }
+    temp->next = new_Node;
 }
 
     //Traverse the linked list to display all the tasks
@@ -73,7 +85,7 @@ int main() {
 
     void deleteNode(Node* head, int t_Num) {
 
-        int count = 1;
+        int count =1;
 
         Node* temp = head;
         Node* prev = nullptr;
