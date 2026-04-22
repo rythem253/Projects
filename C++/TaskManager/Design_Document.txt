@@ -1,0 +1,20 @@
+Design document:
+
+Purpose: to strenghten linked list knowledge and implementation.
+
+DOC.H: contains struct of the linked list, for cleaner programming.
+main.cpp: main class with all logic
+
+-Implement a linked list to add, delete and view all tasks.
+Dinamically allocate memory.
+
+-Adding will append to end of list, or to be more efficient add to index depending on task priority.
+
+-getline() takes the input from the user, including spaces. This will be now added to a node, and inserted into a linked list.
+
+-I am using count as my counter to access the nodes of the linked list as index value.
+Suppose I want to delete task #3, then all I simply do is use count++ until it is '3', which lands at node 3, which is to be deleted. 
+[1] -> [2] -> [3] -> NULL
+
+Delete 2:
+when count++ = 2, my temp pointer at location '2', there I delete it.
