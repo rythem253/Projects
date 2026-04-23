@@ -1,0 +1,29 @@
+body {
+    background-color: white;
+}
+
+.flex-container {
+  display: flex; /* Aligns children side-by-side */
+  gap: 20px;     /* Adds space between columns */
+}
+.flex-container > usrDiv {
+  flex: 1;       /* Makes columns equal width */
+}
+
+.flex-container {
+  display: flex; /* Aligns children side-by-side */
+  gap: 20px;     /* Adds space between columns */
+}
+.flex-container > passDiv {
+  flex: 1;       /* Makes columns equal width */
+}
+
+.pic1 {
+    width: 200px;
+    height: auto;
+}
+
+.pic1_allign {
+    display: flex;
+    justify-content: right;
+}
