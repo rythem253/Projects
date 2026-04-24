@@ -1,4 +1,7 @@
 // This file will have all the backend logic to make my program alive
+
+//This function gets the value of the entered username and password and return
+//the value
 function getUsername_Password() {
     const username = document.getElementById("usernameInput").value;
     const password = document.getElementById("passwordInput").value;

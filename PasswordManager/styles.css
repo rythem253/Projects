@@ -4,12 +4,12 @@ body {
     background-color: white;
 }
 
+body2 {
+  background-color: rgb(88, 27, 27)
+}
 .flex-container {
   display: flex; /* Aligns children side-by-side */
   gap: 20px;     /* Adds space between columns */
-}
-.flex-container {
-  flex: 1;       /* Makes columns equal width */
 }
 
 .pic1 {
@@ -28,6 +28,9 @@ body {
   resize: none;
 }
 
+.create-account-allign {
+  text-align: center;
+}
 /* Adds navigation bar color */
 .topnav {
     background-color: #333;
@@ -35,6 +38,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.top-space {
+  padding-top: 15px;
 }
 
 /* Adds font and color */
