@@ -1,12 +1,13 @@
 /* All design and graphics are inside this file */
 
 body {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
 }
 
-body2 {
-  background-color: rgb(88, 27, 27)
+.body2 {
+    background-color: rgb(222, 177, 177)
 }
+
 .flex-container {
   display: flex; /* Aligns children side-by-side */
   gap: 20px;     /* Adds space between columns */
@@ -31,6 +32,7 @@ body2 {
 .create-account-allign {
   text-align: center;
 }
+
 /* Adds navigation bar color */
 .topnav {
     background-color: #333;
