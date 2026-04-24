@@ -1,0 +1,5 @@
+1. Add a create account page
+2. Welcome screen dashboard when logged in
+3. setup database
+4. add visual appealing stuff
+5. security: encryption
