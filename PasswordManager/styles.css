@@ -19,15 +19,17 @@ body {
 }
 
 .pic1 {
-    width: 200px;
+    width: 400px;
     height: auto;
 }
 
+/* allign pic1 */
 .pic1_allign {
     display: flex;
     justify-content: right;
 }
 
+/* Disable text resizing */
 .usrTxt textarea{
   resize: none;
 }
