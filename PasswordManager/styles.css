@@ -27,3 +27,42 @@ body {
     display: flex;
     justify-content: right;
 }
+
+.usrTxt textarea{
+  resize: none;
+}
+
+/* Adds navigation bar color */
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Adds font and color */
+.topnav button {
+    float: right;
+    color: black;
+    background-color: #333;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    border: none;
+}
+
+/* Adds hover */
+.topnav button:hover {
+    background-color: white;
+    color: rgb(0, 0, 0);
+}
+
+/* Adds color on the tab which is active */
+.topnav button.active {
+  background-color: #04AA6D;
+  color: white;
+}
