@@ -29,8 +29,36 @@ body {
   resize: none;
 }
 
+.center {
+  text-align: center;
+}
+
 .create-account-allign {
   text-align: center;
+}
+
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+/* Sidebar links */
+.sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
 }
 
 /* Adds navigation bar color */

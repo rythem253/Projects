@@ -1,4 +1,6 @@
-// This file will have all the backend logic to make my program alive
+/**
+ * This file is designated to have the login page GUI backend.
+ */
 
 //This function gets the value of the entered username and password and return
 //the value
@@ -16,8 +18,8 @@ document.getElementById("loginBtn").addEventListener("click", function () {
 
     if (data.username === "" || data.password === "") {
         alert("Please fill in both fields");
-    } else if (data.username === "master" || data.password === "123") {
-        window.location.href = "page3.html";
+    } else if (data.username === "master" && data.password === "123") {
+        window.location.href = "dashboard.html";
     }
 });
 
