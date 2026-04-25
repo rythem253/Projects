@@ -9,14 +9,15 @@ function getUsername_Password() {
     return {username, password};
 }
 
+//Once most of GUI and front end will be done, this function will be split into many
+//The encryption will have to check and match new logins. Most likely use a hashtable or linked list
 document.getElementById("loginBtn").addEventListener("click", function () {
     const data = getUsername_Password();
 
     if (data.username === "" || data.password === "") {
         alert("Please fill in both fields");
-    } else {
-        console.log("Username:", data.username);
-        console.log("Password:", data.password);
-        alert("Login capured");
+    } else if (data.username === "master" || data.password === "123") {
+        window.location.href = "page3.html";
     }
 });
+
