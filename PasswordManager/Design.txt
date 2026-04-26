@@ -3,3 +3,17 @@
 3. setup database
 4. add visual appealing stuff
 5. security: encryption
+
+
+Files:
+
+Backend:
+-server.js
+
+Frontend:
+-create.js
+-main.js
+-createAccount.html
+-dashboard.html
+-login.html
+-styles.css
