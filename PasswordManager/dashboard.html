@@ -7,16 +7,35 @@
 
 <body>
 
-    <div class="center">
+    <div class="container">
+        
         <h1>Welcome Back User!</h1>
+
+        <p>Add New Password to Vault</p>
+
+        <div class="flex-container">
+            <label>Username</label>
+            <div class="textBox">
+                <input type="text">
+        </div>
+        </div>
+        
+        <div class="flex-container">
+            <label>Password</label>
+            <div class="textBox">
+                <input type="text">
+            </div>
+        </div>
+
+    <div class="btnCustom">
+        <button id="addPass">Add Password</button>
     </div>
 
-    <div class="sidebar">
-        <a href="svdPass">View Saved Passwords</a>
-        <a href="addNew"> Add Passwords</a>
-        <a href="gnrtPass">Generate a Password</a>
+    <div class="btnCustom">
+        <button id="viewSavedPass"> View Saved Passwords </button>
     </div>
-    
+
+    </div>
 </body>
 
 <script src="main.js"></script>

@@ -4,10 +4,6 @@ body {
     background-color: rgb(255, 255, 255);
 }
 
-.body2 {
-    background-color: rgb(222, 177, 177)
-}
-
 .flex-container {
   display: flex; /* Aligns children side-by-side */
   gap: 20px;     /* Adds space between columns */
@@ -30,20 +26,15 @@ body {
 }
 
 .center {
-  text-align: center;
-}
-
-.create-account-allign {
-  text-align: center;
+    align-items: center;
 }
 
 .sidebar {
     margin: 0;
-    padding: 0;
-    width: 200px;
+    padding: 10px;
+    width: 150px;
     background-color: #f1f1f1;
-    position: fixed;
-    height: 100%;
+    position: top;
     overflow: auto;
 }
 
@@ -99,3 +90,81 @@ body {
   background-color: #04AA6D;
   color: white;
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 300px;
+    margin: auto;
+    text-align: center;
+}
+
+.input {
+    padding: 6px;
+}
+
+.button {
+    padding: 8px;
+    cursor: pointer;
+}
+
+#loginBtn {
+    border: #ededed;
+    background-color: #333;
+    color: #ffffff;
+    font-size: small;
+    border-radius: 10px;
+    padding: 10px 15px;
+}
+
+#loginBtn:hover {
+    color: #555;
+    cursor: pointer;
+}
+
+.textBox {
+    border: 1px solid #ccc;
+    border-radius: 8px; /* Set your desired roundness here */
+    padding: 2px 5px;   /* Small padding so the input doesn't touch the border */
+    display: flex;
+    align-items: center;
+    width: 260px;       /* Control the total width here */
+}
+
+/* Remove the default border from the input itself so it looks like one clean box */
+.textBox input {
+    border: none;
+    outline: none;      /* Removes the blue glow when clicking */
+    width: 100%;
+    padding: 8px;
+    background: transparent;
+}
+
+#login {
+    align-items: center;
+}
+
+.createAccountBtn {
+    display: flex;
+    justify-content: center;  /* horizontal center */
+    align-items: center;
+}
+
+/* addPass & viewPass use this in dashboard.html */
+.btnCustom button{
+    border: #333;
+    background-color: #333;
+    color: #ffffff;
+    font-size: medium;
+    border-radius: 20px;
+    padding: 10px 40px;
+    width: 250px;
+}
+
+.btnCustom button:hover {
+    color: #555;
+    cursor: pointer;
+}
+
+

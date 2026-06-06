@@ -18,6 +18,7 @@ function getUsername_Password() {
     return {username, password};
 }
 
+
 const createBtn = document.getElementById("createAccountBtn");
 
 if (createBtn) {
@@ -50,9 +51,16 @@ if (loginBtn) {
             (storedPassword === data.password) {
             window.location = "dashboard.html";
         } else {
-            alert("IDK");
+            alert("Incorrect username or password");
         }
     }); 
 }
     
+//Goes to the page which displays all the saved passwords.
+const viewSavedPass = document.getElementById("viewSavedPass");
 
+    if (viewSavedPass) {
+        viewSavedPass.addEventListener("click", function() {
+            window.location = "savedPasswords.html";
+        });
+    }
