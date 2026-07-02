@@ -4,7 +4,7 @@ class App(customtkinter.CTk):
 
     def __init__(self):
         super().__init__()
-        self.geometry("300x250")
+        self.geometry("300x350")
         self.configure(fg_color="black")
 
         self.messageLabel = customtkinter.CTkLabel(
@@ -33,12 +33,24 @@ class App(customtkinter.CTk):
 
         self.message2.pack(side="left", padx=10)
         self.password.pack(side="left", padx=10)
-        
-        def button1_event():
-            print('Hi')
 
-        self.button1 = customtkinter.CTkButton(self, text="Submit", command=button1_event) #add command
+        self.button1 = customtkinter.CTkButton(self, text="Submit",command=self.extract_data) #add command
         self.button1.pack(pady=20)
+
+    #ReadMe #1
+    def extract_data(self):
+        #ReadMe #2
+        single_line_input = self.username.get("1.0", "end-1c")
+        print("Input was", single_line_input)
+
+        
+
+        #connect DB
+        #add encryption(make ur own algo maybe)
+        #master pass
+        #cool GUI
+        #use at least 1 data structure
+        #
 
 app = App()
 app.mainloop()
