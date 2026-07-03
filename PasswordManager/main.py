@@ -37,7 +37,11 @@ class App(customtkinter.CTk):
         self.button1 = customtkinter.CTkButton(self, text="Submit",command=self.extract_data) #add command
         self.button1.pack(pady=20)
 
+        self.createButton = customtkinter.CTkButton(self, text="Create Account") #command takes to another screen)
+        self.createButton.pack(pady=5)
+
     #ReadMe #1
+    #Extract the field of username and password filled by the user
     def extract_data(self):
         #ReadMe #2
         single_line_input = self.username.get("1.0", "end-1c")
