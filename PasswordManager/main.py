@@ -49,7 +49,7 @@ class App(customtkinter.CTk):
         getUser = self.username.get("1.0", "end-1c")
         getPass = self.password.get("1.0", "end-1c")
         
-        if getUser == "user" and getPass == "1234":
+        if getUser == "" and getPass == "":
             print("OK DONE")
             self.destroy()
             portal = Dashboard() #We can pass username to then display "Welcome ____"
