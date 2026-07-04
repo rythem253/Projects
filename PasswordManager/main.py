@@ -47,14 +47,12 @@ class App(customtkinter.CTk):
         single_line_input = self.username.get("1.0", "end-1c")
         print("Input was", single_line_input)
 
-        
 
         #connect DB
         #add encryption(make ur own algo maybe)
         #master pass
         #cool GUI
         #use at least 1 data structure
-        #
 
 app = App()
 app.mainloop()
