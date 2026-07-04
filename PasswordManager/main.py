@@ -1,4 +1,5 @@
 import customtkinter
+from portal import Dashboard
 
 class App(customtkinter.CTk):
 
@@ -42,11 +43,17 @@ class App(customtkinter.CTk):
 
     #ReadMe #1
     #Extract the field of username and password filled by the user
+    #Temporary master password
     def extract_data(self):
         #ReadMe #2
-        single_line_input = self.username.get("1.0", "end-1c")
-        print("Input was", single_line_input)
-
+        getUser = self.username.get("1.0", "end-1c")
+        getPass = self.password.get("1.0", "end-1c")
+        
+        if getUser == "user" and getPass == "1234":
+            print("OK DONE")
+            self.destroy()
+            portal = Dashboard() #We can pass username to then display "Welcome ____"
+            portal.mainloop()
 
         #connect DB
         #add encryption(make ur own algo maybe)
