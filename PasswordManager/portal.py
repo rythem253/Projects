@@ -7,6 +7,8 @@ class Dashboard(customtkinter.CTk):
         self.geometry("320x240")
         self.configure(fg_color="black")
 
+        self.frames = {}
+
         #Frame_a, the main portal screen
         self.frame_a = customtkinter.CTkFrame(self, fg_color="black")
         self.frame_a.place(relwidth=1, relheight=1)
@@ -17,14 +19,59 @@ class Dashboard(customtkinter.CTk):
         self.message2 = customtkinter.CTkLabel(self.frame_a, text="Please select from options below:")
         self.message2.pack(pady=5)
 
-        self.btnView = customtkinter.CTkButton(self.frame_a, text="View Passwords")
+        self.btnView = customtkinter.CTkButton(self.frame_a, text="View Passwords",
+                        command=lambda: self.changeFrame("ViewPasswords"))
+        
         self.btnView.pack(pady=5)
 
-        self.btnAdd = customtkinter.CTkButton(self.frame_a, text="Add Password")
+        self.btnAdd = customtkinter.CTkButton(self.frame_a, text="Add Password",
+                        command=lambda: self.changeFrame("AddPassword"))
+        
         self.btnAdd.pack(pady=5)
 
-        #Frame_b, to view saved passwords
-        #Display database
+        # Create ViewPasswords frame
+        self.view_passwords_frame = ViewPasswords(self, self)
+        self.view_passwords_frame.place(relwidth=1, relheight=1)
+
+        # Create AddPassword frame
+        self.add_password_frame = AddPassword(self, self)
+        self.add_password_frame.place(relwidth=1, relheight=1)
+
+        self.frame_a.tkraise()
+
+    #This method is responsible to to change bw 2 frames
+    def changeFrame(self, name):
+        if name == "ViewPasswords":
+            self.view_passwords_frame.tkraise()
+        elif name == "AddPassword":
+            self.add_password_frame.tkraise()
         
+#--------------------------------------------------------------------------#
+
+#Buttons have each separate class
+
+class ViewPasswords(customtkinter.CTkFrame):
+    def __init__(self, parent, controller):
+        super().__init__(parent, fg_color="black")
+        self.controller = controller
+        self.message1 = customtkinter.CTkLabel(self, text="Saved Passwords")
+        self.message1.pack()
+        self.backBtn = customtkinter.CTkButton(self, text="Back",
+                                    command=lambda: controller.frame_a.tkraise())
+        self.backBtn.pack()
+
+class AddPassword(customtkinter.CTkFrame):
+    def __init__(self, parent, controller):
+        super().__init__(parent, fg_color="black")
+        self.controller = controller
+        self.message2 = customtkinter.CTkLabel(self, text="Add New Password")
+        self.message2.pack()
+        self.backBtn = customtkinter.CTkButton(self, text="Back",
+                                    command=lambda: controller.frame_a.tkraise())
+        self.backBtn.pack()
+
+if __name__ == "__main__":
+    app = Dashboard()
+    app.mainloop()
 
 #.tkraise()

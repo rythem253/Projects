@@ -6,3 +6,6 @@ extract_data is defined inside a class, which makes it a method, not a plain fun
 #2: 
 "1.0" means line 1, column 0 → the very start of the text, even if there's only one line
 "end-1c" means "the end of the content, minus 1 character" — the -1c trims off the automatic trailing newline that Text widgets always add
+
+#3:
+Lambda: In Python, a lambda function is a small, anonymous (nameless) function that is defined inline using the lambda keyword instead of the traditional def keyword.
