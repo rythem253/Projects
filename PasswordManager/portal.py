@@ -64,11 +64,16 @@ class ViewPasswords(customtkinter.CTkFrame):
                                     command=lambda: controller.frame_a.tkraise())
         self.backBtn.pack()
 
+        self.label1 = None
+        
     def Display(self, storage):
         rows = storage.get_rows()
+        if self.label1 is not None:
+            self.label1.destroy()  # remove old label before adding new one
         self.label1 = customtkinter.CTkLabel(self, text=str(rows))
         self.label1.pack()
 
+    
 class AddPassword(customtkinter.CTkFrame):
     def __init__(self, parent, controller):
         super().__init__(parent, fg_color="black")
@@ -78,6 +83,18 @@ class AddPassword(customtkinter.CTkFrame):
         self.backBtn = customtkinter.CTkButton(self, text="Back",
                                     command=lambda: controller.frame_a.tkraise())
         self.backBtn.pack()
+
+        self.lbl1 = customtkinter.CTkLabel(self, text="username")
+        self.lbl1.pack()
+
+        self.lbl2 = customtkinter.CTkLabel(self, text="password")
+        self.lbl2.pack()
+
+        self.username = customtkinter.CTkTextbox(self, width=150, height=10)
+        self.username.pack()
+
+        self.password = customtkinter.CTkTextbox(self, width=15 0, height=10)
+        self.password.pack()
 
 #.tkraise()
 
