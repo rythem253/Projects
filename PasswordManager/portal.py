@@ -58,7 +58,7 @@ class ViewPasswords(customtkinter.CTkFrame):
     def __init__(self, parent, controller):
         super().__init__(parent, fg_color="black")
         self.controller = controller
-        self.message1 = customtkinter.CTkLabel(self, text="Saved Passwords")
+        self.message1 = customtkinter.CTkLabel(self, text="Saved Passwords", text_color="white")
         self.message1.pack()
         self.backBtn = customtkinter.CTkButton(self, text="Back",
                                     command=lambda: controller.frame_a.tkraise())
@@ -70,7 +70,7 @@ class ViewPasswords(customtkinter.CTkFrame):
         rows = storage.get_rows()
         if self.label1 is not None:
             self.label1.destroy()  # remove old label before adding new one
-        self.label1 = customtkinter.CTkLabel(self, text=str(rows))
+        self.label1 = customtkinter.CTkLabel(self, text=str(rows), text_color="white")
         self.label1.pack()
 
     
@@ -78,23 +78,37 @@ class AddPassword(customtkinter.CTkFrame):
     def __init__(self, parent, controller):
         super().__init__(parent, fg_color="black")
         self.controller = controller
-        self.message2 = customtkinter.CTkLabel(self, text="Add New Password")
+        self.message2 = customtkinter.CTkLabel(self, text="Add New Password", text_color="white")
         self.message2.pack()
+
+        # Frame 1
+        self.user_frame = customtkinter.CTkFrame(self)
+        self.user_frame.pack(pady=10)
+
+        self.lbl1 = customtkinter.CTkLabel(self.user_frame, text="username", text_color="black")
+        self.username = customtkinter.CTkTextbox(self.user_frame, width=150, height=10)
+        
+        self.lbl1.pack(side="left", padx=10)
+        self.username.pack(side="left", padx=10)
+
+
+        # Frame 2
+        self.pass_frame = customtkinter.CTkFrame(self)
+        self.pass_frame.pack(pady=10)
+
+        self.lbl2 = customtkinter.CTkLabel(self.pass_frame, text="password", text_color="black")
+        self.password = customtkinter.CTkTextbox(self.pass_frame, width=150, height=10)
+                
+        self.lbl2.pack(side="left", padx=10)
+        self.password.pack(side="left", padx=10)
+
+        self.btnAdd = customtkinter.CTkButton(self, text="Add")
+        self.btnAdd.pack(pady=10)
+
         self.backBtn = customtkinter.CTkButton(self, text="Back",
-                                    command=lambda: controller.frame_a.tkraise())
+        command=lambda: controller.frame_a.tkraise())
         self.backBtn.pack()
 
-        self.lbl1 = customtkinter.CTkLabel(self, text="username")
-        self.lbl1.pack()
-
-        self.lbl2 = customtkinter.CTkLabel(self, text="password")
-        self.lbl2.pack()
-
-        self.username = customtkinter.CTkTextbox(self, width=150, height=10)
-        self.username.pack()
-
-        self.password = customtkinter.CTkTextbox(self, width=15 0, height=10)
-        self.password.pack()
 
 #.tkraise()
 
