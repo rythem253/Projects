@@ -56,15 +56,20 @@ class Dashboard(customtkinter.CTk):
 
 class ViewPasswords(customtkinter.CTkFrame):
     def __init__(self, parent, controller):
-        super().__init__(parent, fg_color="black")
         self.controller = controller
+        super().__init__(parent, fg_color="black")
         self.message1 = customtkinter.CTkLabel(self, text="Saved Passwords", text_color="white")
         self.message1.pack()
-        self.backBtn = customtkinter.CTkButton(self, text="Back",
-                                    command=lambda: controller.frame_a.tkraise())
-        self.backBtn.pack()
 
         self.label1 = None
+
+        # Back button fixed at the bottom
+        self.backBtn = customtkinter.CTkButton(
+            self,
+            text="Back",
+            command=self.controller.frame_a.tkraise
+        )
+        self.backBtn.pack(side="bottom", pady=10)
         
     def Display(self, storage):
         rows = storage.get_rows()
@@ -72,6 +77,7 @@ class ViewPasswords(customtkinter.CTkFrame):
             self.label1.destroy()  # remove old label before adding new one
         self.label1 = customtkinter.CTkLabel(self, text=str(rows), text_color="white")
         self.label1.pack()
+
 
     
 class AddPassword(customtkinter.CTkFrame):
