@@ -19,12 +19,12 @@ class Database:
 
         self.conn.commit()
 
-    def addStuff(self):
+    def addStuff(self, service, username, password):
         self.cursor.execute("""
             INSERT INTO vault
             (service, username, password)
             VALUES (?,?,?)   
-         """, ("google", "rythem", "112233"))
+         """, (service, username, password))
         
         self.conn.commit()
 
