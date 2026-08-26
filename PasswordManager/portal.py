@@ -1,10 +1,13 @@
 import customtkinter
 from storage import Database
+from encrypt import Encrypt
+from encrypt import Decrypt
 
 class Dashboard(customtkinter.CTk):
 
-    def __init__(self):
+    def __init__(self, key):
         super().__init__()
+        self.key = key
         self.geometry("320x240")
         self.configure(fg_color="black")
 
@@ -19,10 +22,10 @@ class Dashboard(customtkinter.CTk):
         self.message1 = customtkinter.CTkLabel(self.frame_a, text="Welcome Back User !", font=("Arial", 24), text_color="royalblue")
         self.message1.pack(side="top", pady=20)
 
-        self.message2 = customtkinter.CTkLabel(self.frame_a, text="Please select from options below:")
+        self.message2 = customtkinter.CTkLabel(self.frame_a, text="Please select from options below:", text_color="white")
         self.message2.pack(pady=5)
 
-        self.btnView = customtkinter.CTkButton(self.frame_a, text="View Passwords",
+        self.btnView = customtkinter.CTkButton(self.frame_a, text="View Passwords", text_color="white",
                         command=lambda: self.changeFrame("ViewPasswords"))
         
         self.btnView.pack(pady=5)
@@ -108,16 +111,28 @@ class AddPassword(customtkinter.CTkFrame):
         self.lbl2.pack(side="left", padx=10)
         self.password.pack(side="left", padx=10)
 
-        self.btnAdd = customtkinter.CTkButton(self, text="Add")
+        self.btnAdd = customtkinter.CTkButton(self, text="Add", command=self.handleAdd)
         self.btnAdd.pack(pady=10)
+        #Need to send password and username to encryption class to do security stuff
+        #then from there send to SQL. 
 
+        
         self.backBtn = customtkinter.CTkButton(self, text="Back",
-        command=lambda: controller.frame_a.tkraise())
+            command=lambda: controller.frame_a.tkraise())
         self.backBtn.pack()
+
+        plain_pass = self.password.get("1.0", "end-1c")
+
+    def handleAdd(self):
+        plain_pass = self.password.get("1.0", "end-1c")
+        encrypted_pass = Encrypt(plain_pass, self.controller.key)
+        decrypt_pass = Decrypt(encrypted_pass, self.controller.key)
 
 
 #.tkraise()
 
 if __name__ == "__main__":
-    app = Dashboard()
+    from cryptography.fernet import Fernet
+    test_key = Fernet.generate_key()
+    app = Dashboard(test_key)
     app.mainloop()
