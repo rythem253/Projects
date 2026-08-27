@@ -1,8 +1,14 @@
 import sqlite3
+import os
+
+# Same fix as main.py: resolve the db file relative to this script's
+# folder, not whatever directory the app happens to be launched from.
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DEFAULT_DB_PATH = os.path.join(BASE_DIR, "database.db")
 
 
 class Database:
-    def __init__(self, db_path="database.db"):
+    def __init__(self, db_path=DEFAULT_DB_PATH):
         self.conn = sqlite3.connect(db_path)
         self.cursor = self.conn.cursor()
         self.createTable()
@@ -24,7 +30,7 @@ class Database:
             INSERT INTO vault
             (service, username, password)
             VALUES (?,?,?)   
-         """, (service, username, password))
+        """, (service, username, password))
         
         self.conn.commit()
 
@@ -39,6 +45,13 @@ class Database:
     
     def close(self):
         self.conn.close()
+
+    # def displayAll(self, query="Select password From vault"):
+    #     self.cursor.execute(query)
+    #     self.conn.commit()
+    #     print(query)
+
+
 
 if __name__ == "__main__":
     db = Database()

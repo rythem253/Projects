@@ -3,18 +3,21 @@ from storage import Database
 from encrypt import Encrypt
 from encrypt import Decrypt
 
-class Dashboard(customtkinter.CTk):
+class DashboardFrame(customtkinter.CTkFrame):
+    """
+    The main password-manager screen. This is a *frame* placed inside
+    the app's single CTk root (see main.py), not its own Tk root window -
+    that's what avoids the multi-mainloop / after-job crash on close.
+    """
 
-    def __init__(self, key):
-        super().__init__()
-        self.key = key
-        self.geometry("320x240")
-        self.configure(fg_color="black")
+    def __init__(self, parent, app):
+        super().__init__(parent, fg_color="black")
+        self.key = app.key
 
         self.db = Database()
 
         self.frames = {}
-
+    
         #Frame_a, the main portal screen
         self.frame_a = customtkinter.CTkFrame(self, fg_color="black")
         self.frame_a.place(relwidth=1, relheight=1)
@@ -53,6 +56,7 @@ class Dashboard(customtkinter.CTk):
         elif name == "AddPassword":
             self.add_password_frame.tkraise()
 
+
 #--------------------------------------------------------------------------#
 
 #Buttons have each separate class
@@ -75,12 +79,34 @@ class ViewPasswords(customtkinter.CTkFrame):
         self.backBtn.pack(side="bottom", pady=10)
         
     def Display(self, storage):
-        rows = storage.get_rows()
+        rows = storage.get_rows() # Displays encrypted rn
+
+        display_lines = []
+
+        for row in rows:
+            service = row[1]
+            username = row[2]
+            encrypted_password = row[3]
+
+            try:
+                decrypt_pass = Decrypt(encrypted_password, self.controller.key)
+            except Exception:
+                # Row was encrypted with a different key (or is corrupted).
+                # Show it instead of crashing the whole dashboard.
+                decrypt_pass = "<undecryptable - wrong key?>"
+
+            display_lines.append(f"{service} | {username} | {decrypt_pass}")
+            
+        display_text = "\n".join(display_lines)
+
         if self.label1 is not None:
             self.label1.destroy()  # remove old label before adding new one
-        self.label1 = customtkinter.CTkLabel(self, text=str(rows), text_color="white")
+
+        self.label1 = customtkinter.CTkLabel(self, text=display_text)
         self.label1.pack()
 
+    # Decrypt here
+    # decrypt_pass = Decrypt(encrypted_pass, self.controller.key)
 
     
 class AddPassword(customtkinter.CTkFrame):
@@ -114,7 +140,7 @@ class AddPassword(customtkinter.CTkFrame):
         # Frame 3
         self.pass_frame = customtkinter.CTkFrame(self)
         self.pass_frame.pack(pady=5)
-
+ 
         self.lbl2 = customtkinter.CTkLabel(self.pass_frame, text="password", text_color="black")
         self.password = customtkinter.CTkTextbox(self.pass_frame, width=150, height=10)
                 
@@ -141,13 +167,21 @@ class AddPassword(customtkinter.CTkFrame):
 
         self.controller.db.addStuff(service, username, encrypted_pass)
 
-        decrypt_pass = Decrypt(encrypted_pass, self.controller.key)
-
 
 #.tkraise()
 
 if __name__ == "__main__":
+    # Small standalone harness so you can still test this screen on its
+    # own, using the same single-root pattern as the real app.
     from cryptography.fernet import Fernet
-    test_key = Fernet.generate_key()
-    app = Dashboard(test_key)
-    app.mainloop()
+
+    class _TestApp(customtkinter.CTk):
+        def __init__(self):
+            super().__init__()
+            self.geometry("320x240")
+            self.configure(fg_color="black")
+            self.key = Fernet.generate_key()
+            self.frame = DashboardFrame(self, self)
+            self.frame.place(relwidth=1, relheight=1)
+
+    _TestApp().mainloop()
