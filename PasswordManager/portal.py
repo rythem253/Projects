@@ -102,7 +102,7 @@ class ViewPasswords(customtkinter.CTkFrame):
         if self.label1 is not None:
             self.label1.destroy()  # remove old label before adding new one
 
-        self.label1 = customtkinter.CTkLabel(self, text=display_text)
+        self.label1 = customtkinter.CTkLabel(self, text=display_text, text_color="white", font=("Arial",15))
         self.label1.pack()
 
     # Decrypt here

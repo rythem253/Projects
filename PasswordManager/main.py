@@ -36,7 +36,7 @@ class App(customtkinter.CTk):
 
     def __init__(self):
         super().__init__()
-        self.geometry("300x350")
+        self.geometry("400x450")
         self.configure(fg_color="black")
         self.title("Password Manager")
 
@@ -66,7 +66,8 @@ class LoginFrame(customtkinter.CTkFrame):
         self.messageLabel = customtkinter.CTkLabel(
             self,
             text="Welcome Back!",
-            fg_color="transparent"
+            fg_color="transparent",
+            text_color="white"
         )
         self.messageLabel.pack(pady=20)
 
