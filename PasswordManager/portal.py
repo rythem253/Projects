@@ -13,6 +13,7 @@ class DashboardFrame(customtkinter.CTkFrame):
     def __init__(self, parent, app):
         super().__init__(parent, fg_color="black")
         self.key = app.key
+        self.root = app
 
         self.db = Database()
 
@@ -51,6 +52,7 @@ class DashboardFrame(customtkinter.CTkFrame):
     #This method is responsible to to change bw 2 frames
     def changeFrame(self, name):
         if name == "ViewPasswords":
+            self.root.geometry("500x600")
             self.view_passwords_frame.Display(self.db)
             self.view_passwords_frame.tkraise()
         elif name == "AddPassword":
@@ -65,8 +67,10 @@ class ViewPasswords(customtkinter.CTkFrame):
     def __init__(self, parent, controller):
         self.controller = controller
         super().__init__(parent, fg_color="black")
-        self.message1 = customtkinter.CTkLabel(self, text="Saved Passwords", text_color="white")
-        self.message1.pack()
+        self.message1 = customtkinter.CTkLabel(self, text="Saved Passwords", text_color="white", font=("Times New Roman", 30))
+        self.message1.pack(pady=20)
+        self.gap1 = customtkinter.CTkLabel(self, text="---------------------------------------", font=("Arial", 35), text_color="White")
+        self.gap1.pack()
 
         self.label1 = None
 
@@ -81,8 +85,6 @@ class ViewPasswords(customtkinter.CTkFrame):
     def Display(self, storage):
         rows = storage.get_rows() # Displays encrypted rn
 
-        display_lines = []
-
         for row in rows:
             service = row[1]
             username = row[2]
@@ -95,20 +97,20 @@ class ViewPasswords(customtkinter.CTkFrame):
                 # Show it instead of crashing the whole dashboard.
                 decrypt_pass = "<undecryptable - wrong key?>"
 
-            display_lines.append(f"{service} | {username} | {decrypt_pass}")
-            
-        display_text = "\n".join(display_lines)
+            # The card container for this one row
+            row_frame = customtkinter.CTkFrame(self, fg_color="#1c1c1c", corner_radius=8)
+            row_frame.pack(fill="x", padx=10, pady=4)
 
-        if self.label1 is not None:
-            self.label1.destroy()  # remove old label before adding new one
+            # Sub-frame just for this one row's two labels, side by side
+            info_row = customtkinter.CTkFrame(row_frame, fg_color="transparent")
+            info_row.pack(fill="x", padx=10, pady=8)
+                                                                            #Well Well Dont Forget this long line            
+            username_row = customtkinter.CTkLabel(info_row, text=f"{service}                 {username}", text_color="white", anchor="w")
+            username_row.pack(side="left")
 
-        self.label1 = customtkinter.CTkLabel(self, text=display_text, text_color="white", font=("Arial",15))
-        self.label1.pack()
-
-    # Decrypt here
-    # decrypt_pass = Decrypt(encrypted_pass, self.controller.key)
-
-    
+            pass_row = customtkinter.CTkLabel(info_row, text=decrypt_pass, text_color="white", anchor="e")
+            pass_row.pack(side="right", padx=(0, 100))
+      
 class AddPassword(customtkinter.CTkFrame):
     def __init__(self, parent, controller):
         super().__init__(parent, fg_color="black")
@@ -141,7 +143,7 @@ class AddPassword(customtkinter.CTkFrame):
         self.pass_frame = customtkinter.CTkFrame(self)
         self.pass_frame.pack(pady=5)
  
-        self.lbl2 = customtkinter.CTkLabel(self.pass_frame, text="password", text_color="black")
+        self.lbl2 = customtkinter.CTkLabel(self.pass_frame, text="password", text_color="black", )
         self.password = customtkinter.CTkTextbox(self.pass_frame, width=150, height=10)
                 
         self.lbl2.pack(side="left", padx=10)
