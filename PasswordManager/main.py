@@ -105,7 +105,7 @@ class LoginFrame(customtkinter.CTkFrame):
         getUser = self.username.get("1.0", "end-1c")
         getPass = self.password.get("1.0", "end-1c")
 
-        if getUser == "" and getPass == "":
+        if getUser == "admin" and getPass == "123":
             print("OK DONE")
             self.controller.show_dashboard()  # We can pass username to then display "Welcome ____"
 

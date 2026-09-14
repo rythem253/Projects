@@ -35,11 +35,11 @@ class ViewPasswords(customtkinter.CTkFrame):
             username = row[2]
             encrypted_password = row[3]
 
+            # Row was encrypted with a different key (or is corrupted).
+            # Show it instead of crashing the whole dashboard.
             try:
                 decrypt_pass = Decrypt(encrypted_password, self.controller.key)
             except Exception:
-                # Row was encrypted with a different key (or is corrupted).
-                # Show it instead of crashing the whole dashboard.
                 decrypt_pass = "<undecryptable - wrong key?>"
 
             # The card container for this one row
