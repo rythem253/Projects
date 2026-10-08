@@ -72,26 +72,26 @@ class LoginFrame(customtkinter.CTkFrame):
         self.messageLabel.pack(pady=20)
 
         # Frame for Username row
-        self.user_frame = customtkinter.CTkFrame(self, fg_color="transparent")
+        self.user_frame = customtkinter.CTkFrame(self, fg_color="grey40")
         self.user_frame.pack(pady=10)
 
         self.message1 = customtkinter.CTkLabel(self.user_frame, text="Username", text_color="white")
-        self.username = customtkinter.CTkTextbox(self.user_frame, width=120, height=40)
+        self.username = customtkinter.CTkEntry(self.user_frame, width=120, height=40)
 
         self.message1.pack(side="left", padx=10)
         self.username.pack(side="right", padx=10)
 
         # Frame for Password row
-        self.pass_frame = customtkinter.CTkFrame(self, fg_color="transparent")
+        self.pass_frame = customtkinter.CTkFrame(self, fg_color="grey40")
         self.pass_frame.pack(pady=10)
 
         self.message2 = customtkinter.CTkLabel(self.pass_frame, text="Password", text_color="white")
-        self.password = customtkinter.CTkTextbox(self.pass_frame, width=120, height=40)
+        self.password = customtkinter.CTkEntry(self.pass_frame, width=120, height=40, show="*")
 
         self.message2.pack(side="left", padx=10)
         self.password.pack(side="left", padx=10)
 
-        self.button1 = customtkinter.CTkButton(self, text="Login", command=self.extract_data, fg_color="DarkSalmon", text_color="Black", hover_color="DarkOrange1")  # add command
+        self.button1 = customtkinter.CTkButton(self, text="Login", command=self.extract_data, fg_color="grey57", text_color="Black", hover_color="DarkOrange1")  # add command
         self.button1.pack(pady=5)
 
         self.createButton = customtkinter.CTkButton(self, text="Create Account", fg_color="Black", text_color="dodger blue", hover=False)  # command takes to another screen
@@ -107,8 +107,8 @@ class LoginFrame(customtkinter.CTkFrame):
 
     def extract_data(self):
         # ReadMe #2
-        getUser = self.username.get("1.0", "end-1c")
-        getPass = self.password.get("1.0", "end-1c")
+        getUser = self.username.get()
+        getPass = self.password.get()
 
         if getUser == "admin" and getPass == "123":
             self.wrongCredLabel.configure(text="")

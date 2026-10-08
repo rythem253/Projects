@@ -11,31 +11,31 @@ class AddPassword(customtkinter.CTkFrame):
         self.message2.pack()
 
         # Frame 1
-        self.service_frame = customtkinter.CTkFrame(self)
+        self.service_frame = customtkinter.CTkFrame(self, fg_color="grey57")
         self.service_frame.pack(pady=5)
 
         self.lblSer = customtkinter.CTkLabel(self.service_frame, text="service", text_color="black")
-        self.serviceTextBox = customtkinter.CTkTextbox(self.service_frame, width=150, height=10)
+        self.serviceEntry = customtkinter.CTkEntry(self.service_frame, width=150, height=10)
 
         self.lblSer.pack(side="left", padx=10)
-        self.serviceTextBox.pack(side="left", padx=10)
+        self.serviceEntry.pack(side="left", padx=10)
 
         # Frame 2
-        self.user_frame = customtkinter.CTkFrame(self)
+        self.user_frame = customtkinter.CTkFrame(self, fg_color="grey57")
         self.user_frame.pack(pady=5)
 
         self.lbl1 = customtkinter.CTkLabel(self.user_frame, text="username", text_color="black")
-        self.username = customtkinter.CTkTextbox(self.user_frame, width=150, height=10)
+        self.username = customtkinter.CTkEntry(self.user_frame, width=150, height=10)
 
         self.lbl1.pack(side="left", padx=10)
         self.username.pack(side="left", padx=10)
 
         # Frame 3
-        self.pass_frame = customtkinter.CTkFrame(self)
+        self.pass_frame = customtkinter.CTkFrame(self, fg_color="grey57")
         self.pass_frame.pack(pady=5)
 
         self.lbl2 = customtkinter.CTkLabel(self.pass_frame, text="password", text_color="black", )
-        self.password = customtkinter.CTkTextbox(self.pass_frame, width=150, height=10)
+        self.password = customtkinter.CTkEntry(self.pass_frame, width=150, height=10)
 
         self.lbl2.pack(side="left", padx=10)
         self.password.pack(side="left", padx=10)
@@ -50,9 +50,9 @@ class AddPassword(customtkinter.CTkFrame):
         self.backBtn.pack()
 
     def handleAdd(self):
-        service = self.serviceTextBox.get("1.0", "end-1c")
-        username = self.username.get("1.0", "end-1c")
-        plain_pass = self.password.get("1.0", "end-1c")
+        service = self.serviceEntry.get()
+        username = self.username.get()
+        plain_pass = self.password.get()
         encrypted_pass = Encrypt(plain_pass, self.controller.key)
 
         self.controller.db.addStuff(service, username, encrypted_pass)

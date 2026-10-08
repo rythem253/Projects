@@ -8,8 +8,8 @@ class ViewPasswords(customtkinter.CTkFrame):
         super().__init__(parent, fg_color="black")
         self.message1 = customtkinter.CTkLabel(self, text="Saved Passwords", text_color="white", font=("Times New Roman", 30))
         self.message1.pack(pady=20)
-        self.gap1 = customtkinter.CTkLabel(self, text="---------------------------------------", font=("Arial", 35), text_color="White")
-        self.gap1.pack()
+        self.gap1 = customtkinter.CTkFrame(self, height=10, fg_color="white", corner_radius=0)
+        self.gap1.pack(fill="x", padx=20, pady=10)
 
         self.label1 = None
         self.row_frames = []
