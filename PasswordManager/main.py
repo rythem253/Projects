@@ -72,43 +72,51 @@ class LoginFrame(customtkinter.CTkFrame):
         self.messageLabel.pack(pady=20)
 
         # Frame for Username row
-        self.user_frame = customtkinter.CTkFrame(self)
+        self.user_frame = customtkinter.CTkFrame(self, fg_color="transparent")
         self.user_frame.pack(pady=10)
 
-        self.message1 = customtkinter.CTkLabel(self.user_frame, text="Username")
+        self.message1 = customtkinter.CTkLabel(self.user_frame, text="Username", text_color="white")
         self.username = customtkinter.CTkTextbox(self.user_frame, width=120, height=40)
 
         self.message1.pack(side="left", padx=10)
-        self.username.pack(side="left", padx=10)
+        self.username.pack(side="right", padx=10)
 
         # Frame for Password row
-        self.pass_frame = customtkinter.CTkFrame(self)
+        self.pass_frame = customtkinter.CTkFrame(self, fg_color="transparent")
         self.pass_frame.pack(pady=10)
 
-        self.message2 = customtkinter.CTkLabel(self.pass_frame, text="Password")
+        self.message2 = customtkinter.CTkLabel(self.pass_frame, text="Password", text_color="white")
         self.password = customtkinter.CTkTextbox(self.pass_frame, width=120, height=40)
 
         self.message2.pack(side="left", padx=10)
         self.password.pack(side="left", padx=10)
 
-        self.button1 = customtkinter.CTkButton(self, text="Submit", command=self.extract_data)  # add command
-        self.button1.pack(pady=20)
+        self.button1 = customtkinter.CTkButton(self, text="Login", command=self.extract_data, fg_color="DarkSalmon", text_color="Black", hover_color="DarkOrange1")  # add command
+        self.button1.pack(pady=5)
 
-        self.createButton = customtkinter.CTkButton(self, text="Create Account")  # command takes to another screen
-        self.createButton.pack(pady=5)
+        self.createButton = customtkinter.CTkButton(self, text="Create Account", fg_color="Black", text_color="dodger blue", hover=False)  # command takes to another screen
+        self.createButton.pack(pady=0)
+
+        self.wrongCredLabel = customtkinter.CTkLabel(self, text="", text_color="red")
+        self.wrongCredLabel.pack()
 
     # ReadMe #1
     # Extract the field of username and password filled by the user
     # Temporary master password
+
+
     def extract_data(self):
         # ReadMe #2
         getUser = self.username.get("1.0", "end-1c")
         getPass = self.password.get("1.0", "end-1c")
 
         if getUser == "admin" and getPass == "123":
-            print("OK DONE")
+            self.wrongCredLabel.configure(text="")
             self.controller.show_dashboard()  # We can pass username to then display "Welcome ____"
-
+        else:
+            self.wrongCredLabel.configure(text="Wrong username or password")
+            
+            
         # connect DB
         # add encryption(make ur own algo maybe)
         # master pass
